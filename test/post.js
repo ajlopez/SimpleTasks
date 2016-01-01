@@ -1,5 +1,6 @@
 
 var st = require('..');
+var dates = require('../lib/dates');
 
 exports['post and subscribe task'] = function (test) {
     test.async();
@@ -99,3 +100,30 @@ exports['post and subscribe task with delay option using task format'] = functio
     });
 }
 
+exports['post and subscribe task with starting option'] = function (test) {
+    test.async();
+    
+    var engine = st.engine();
+    
+    var start = (new Date()).getTime();
+    var starting = dates.toNormalDateTimeString(new Date(start + 1500));
+    
+    engine.post({ type: 'process', options: { value: 42 } }, { starting: starting });
+    
+    engine.subscribe('process', function (task) {
+        var now = (new Date()).getTime();
+
+        test.ok(task);
+        test.equal(task.type, 'process');
+        test.ok(task.options);
+        test.equal(task.options.value, 42);
+
+        test.ok(now > start);
+        test.ok(now > start + 800);
+        test.ok(now < start + 2000);
+        
+        engine.stop();
+        
+        test.done();
+    });
+}
