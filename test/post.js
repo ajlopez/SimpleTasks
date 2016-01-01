@@ -106,7 +106,7 @@ exports['post and subscribe task with starting option'] = function (test) {
     var engine = st.engine();
     
     var start = (new Date()).getTime();
-    var starting = dates.toNormalDateTimeString(new Date(start + 1500));
+    var starting = dates.toNormalDateTimeString(new Date(start + 2500));
     
     engine.post({ type: 'process', options: { value: 42 } }, { starting: starting });
     
@@ -119,8 +119,8 @@ exports['post and subscribe task with starting option'] = function (test) {
         test.equal(task.options.value, 42);
 
         test.ok(now > start);
-        test.ok(now > start + 800);
-        test.ok(now < start + 2000);
+        test.ok(now > start + 1800);
+        test.ok(now < start + 3500);
         
         engine.stop();
         
