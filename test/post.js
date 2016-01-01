@@ -18,3 +18,26 @@ exports['post and subscribe task'] = function (test) {
     });
 }
 
+exports['post and subscribe three tasks'] = function (test) {
+    test.async();
+    
+    var engine = st.engine();
+    
+    engine.post({ type: 'process', options: { value: 1 } });
+    engine.post({ type: 'process', options: { value: 2 } });
+    engine.post({ type: 'process', options: { value: 3 } });
+    
+    var counter = 0;
+    
+    engine.subscribe('process', function (task) {
+        counter++;
+        test.ok(task);
+        test.equal(task.type, 'process');
+        test.ok(task.options);
+        test.equal(task.options.value, counter);
+        
+        if (counter == 3)
+            test.done();
+    });
+}
+
