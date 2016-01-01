@@ -41,3 +41,28 @@ exports['post and subscribe three tasks'] = function (test) {
     });
 }
 
+exports['post and subscribe task with delay option'] = function (test) {
+    test.async();
+    
+    var engine = st.engine();
+    
+    var start = (new Date()).getTime();
+    
+    engine.post({ type: 'process', options: { value: 42 } }, { delay: 1000 });
+    
+    engine.subscribe('process', function (task) {
+        var now = (new Date()).getTime();
+
+        test.ok(task);
+        test.equal(task.type, 'process');
+        test.ok(task.options);
+        test.equal(task.options.value, 42);
+
+        test.ok(now > start);
+        test.ok(now > start + 800);
+        test.ok(now < start + 1500);
+        
+        test.done();
+    });
+}
+
