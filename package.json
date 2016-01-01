@@ -1,0 +1,17 @@
+{ "name": "simpletasks"
+, "description": "Simple task manager"
+, "keywords": [ "task", "javascript", "manager" ]
+, "version": "0.0.1alpha"
+, "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)"
+, "repository": { "type": "git", "url": "git://github.com/ajlopez/SimpleTasks.git" }
+, "main": "./lib/simpletasks.js"
+, "engines": { "node": ">= 0.6.0 && < 0.13.0" }
+, "scripts": {
+    "test": "simpleunit test"
+  }
+, "dependencies": {
+  }
+, "devDependencies": {
+    "simpleunit": "0.0.7"
+  }
+}
