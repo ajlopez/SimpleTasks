@@ -14,6 +14,8 @@ exports['post and subscribe task'] = function (test) {
         test.ok(task.options);
         test.equal(task.options.value, 42);
         
+        engine.stop();
+        
         test.done();
     });
 }
@@ -36,8 +38,10 @@ exports['post and subscribe three tasks'] = function (test) {
         test.ok(task.options);
         test.equal(task.options.value, counter);
         
-        if (counter == 3)
+        if (counter == 3) {
+            engine.stop();
             test.done();
+        }
     });
 }
 
@@ -61,6 +65,8 @@ exports['post and subscribe task with delay option'] = function (test) {
         test.ok(now > start);
         test.ok(now > start + 800);
         test.ok(now < start + 1500);
+        
+        engine.stop();
         
         test.done();
     });
@@ -86,6 +92,8 @@ exports['post and subscribe task with delay option using task format'] = functio
         test.ok(now > start);
         test.ok(now > start + 800);
         test.ok(now < start + 1500);
+        
+        engine.stop();
         
         test.done();
     });
