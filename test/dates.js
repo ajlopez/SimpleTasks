@@ -24,9 +24,16 @@ exports['date string to milliseconds'] = function (test) {
     test.equal(result, (new Date(2016, 0, 2)).getTime());
 };
 
-exports['date to milliseconds'] = function (test) {
+exports['new date to milliseconds'] = function (test) {
     var result = dates.toMilliseconds(new Date(2016, 0, 2));
     
     test.ok(result);
     test.equal(result, (new Date(2016, 0, 2)).getTime());
+};
+
+exports['date to milliseconds'] = function (test) {
+    var result = dates.toMilliseconds(Date());
+    
+    test.ok(result);
+    test.equal(result, (new Date(Date())).getTime());
 };
