@@ -17,8 +17,15 @@ exports['to normal date time string'] = function (test) {
     test.equal(result, "2015-12-10 02:03:04");
 };
 
-exports['string to milliseconds'] = function (test) {
+exports['date string to milliseconds'] = function (test) {
     var result = dates.toMilliseconds("2016-01-02");
+    
+    test.ok(result);
+    test.equal(result, (new Date(2016, 0, 2)).getTime());
+};
+
+exports['date to milliseconds'] = function (test) {
+    var result = dates.toMilliseconds(new Date(2016, 0, 2));
     
     test.ok(result);
     test.equal(result, (new Date(2016, 0, 2)).getTime());
