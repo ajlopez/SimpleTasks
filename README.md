@@ -37,6 +37,10 @@ TBD
 
 MIT
 
+## References
+
+- [A cron-like and not-cron-like job scheduler for Node](https://github.com/node-schedule/node-schedule)
+
 ## Contribution
 
 Feel free to [file issues](https://github.com/ajlopez/SimpleTasks) and submit
